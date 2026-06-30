@@ -56,7 +56,7 @@ namespace WPFMiniAplication
                 //יודע לקרוא לשירותים
                 HttpClient client = new HttpClient();
                 //הכנת כתובת להתחברות
-                string address = "https://localhost:7227/";
+                string address = "https://localhost:7227/swagger/index.html";
                 //הפיכת האובייקט להכנה לשליחה
                 string sringParameter = JsonConvert.SerializeObject(NewCall);
                 //מכניסה למזוודה את הפרמטר המשוטח , מגדירה שהנתונים בקידוד לכל השפות, והוא מסוג json
