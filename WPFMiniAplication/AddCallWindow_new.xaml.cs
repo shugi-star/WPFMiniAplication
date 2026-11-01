@@ -49,7 +49,7 @@ namespace WPFMiniAplication
             else
                     MessageBox.Show("טעינת הקטגוריות לא הצליחה");
         }
-        private void saveNewCall(object sender, RoutedEventArgs e)
+        private async void saveNewCall(object sender, RoutedEventArgs e)
         {
             //האם הכל מלא
             if (string.IsNullOrWhiteSpace(txtDescription.Text) ||
@@ -74,7 +74,7 @@ namespace WPFMiniAplication
                     IdVolunteer = null
                 };
                     //שליחה לשרת
-                    sendCallToWebApi();
+                    await sendCallToWebApi();
                 }
             }
         
@@ -85,7 +85,7 @@ namespace WPFMiniAplication
                 string json = JsonConvert.SerializeObject(call);
                 MessageBox.Show("json: " + json);
                 StringContent content = new StringContent(json,Encoding.UTF8,"application/json");
-                HttpResponseMessage response =client.PostAsync("https://localhost:7227/api/Call", content).Result;
+                HttpResponseMessage response = await client.PostAsync("https://localhost:7227/api/Call", content);
                 
                 MessageBox.Show("address:   " + address + "/Call " + "content: " + content);
                 if (!response.IsSuccessStatusCode)
